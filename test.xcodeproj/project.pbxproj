@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A1F505A283D1BE000581D06 /* HomeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F5059283D1BE000581D06 /* HomeContent.swift */; };
 		3A826F8B283BFE2700081831 /* HomeFullscreenRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A826F8A283BFE2700081831 /* HomeFullscreenRow.swift */; };
 		3A826F93283C0DC500081831 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A826F92283C0DC500081831 /* Home.swift */; };
 		3A84FFB227DCAF46006DB613 /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A84FFB127DCAF46006DB613 /* tvOSApp.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A1F5059283D1BE000581D06 /* HomeContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContent.swift; sourceTree = "<group>"; };
 		3A826F8A283BFE2700081831 /* HomeFullscreenRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFullscreenRow.swift; sourceTree = "<group>"; };
 		3A826F92283C0DC500081831 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3A84FFAF27DCAF46006DB613 /* tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +53,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A1F505B283D1BE500581D06 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3A826F8A283BFE2700081831 /* HomeFullscreenRow.swift */,
+				3A826F92283C0DC500081831 /* Home.swift */,
+				3A1F5059283D1BE000581D06 /* HomeContent.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		3A5234D727DA686C00C8CD76 = {
 			isa = PBXGroup;
 			children = (
@@ -71,27 +83,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3A826F87283BFDF800081831 /* views */ = {
+		3A826F87283BFDF800081831 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3A826F8A283BFE2700081831 /* HomeFullscreenRow.swift */,
-				3A826F92283C0DC500081831 /* Home.swift */,
+				3A1F505B283D1BE500581D06 /* Home */,
 			);
-			path = views;
-			sourceTree = "<group>";
-		};
-		3A826F8C283C055100081831 /* util */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = util;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		3A84FFB027DCAF46006DB613 /* tvOS */ = {
 			isa = PBXGroup;
 			children = (
-				3A826F8C283C055100081831 /* util */,
-				3A826F87283BFDF800081831 /* views */,
+				3A826F87283BFDF800081831 /* Views */,
 				3A84FFB127DCAF46006DB613 /* tvOSApp.swift */,
 				3A84FFB327DCAF46006DB613 /* ContentView.swift */,
 			);
@@ -225,6 +228,7 @@
 				3A84FFB427DCAF46006DB613 /* ContentView.swift in Sources */,
 				3A826F93283C0DC500081831 /* Home.swift in Sources */,
 				3A84FFB227DCAF46006DB613 /* tvOSApp.swift in Sources */,
+				3A1F505A283D1BE000581D06 /* HomeContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
