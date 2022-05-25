@@ -31,7 +31,7 @@ struct ContentRow: View {
                     
                         .focusable()
                         .focused(focusedImage, equals: "\(focusPrefix)::\($0)")
-                        .scaleEffect(focusedImage.wrappedValue == "\(focusPrefix)::\($0)" ? 1.1 : 1, anchor: .bottom)
+                        .scaleEffect(focusedImage.wrappedValue == "\(focusPrefix)::\($0)" ? 1.1 : 1, anchor: size == .five ? .bottom : .center)
                         .animation(.easeInOut(duration: HomeConstants.imageTransitionDurarion), value: focusedImage.wrappedValue == "\(focusPrefix)::\($0)")
                 }
             }
