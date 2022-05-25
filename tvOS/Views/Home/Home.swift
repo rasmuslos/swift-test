@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+public struct HomeConstants {
+    public static let imageChangeDelay = 0.2
+    public static let imageTransitionDurarion = 0.25
+}
+
+fileprivate struct BackgroundImage: View {
+    public let url: String
+    
+    var body: some View {
+        Image(url)
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .clipped()
+    }
+}
+
 struct Home: View {
     enum Section: Hashable {
         case spacer
@@ -20,81 +37,47 @@ struct Home: View {
     @FocusState private var focusedSection: Section?
     @FocusState private var focusedImage: String?
     
-    @State private var enlargedImage: Int = 0
-    @State private var showHeroImage = true
-    @State private var fadeOut = false
-    @State private var heroWasFocused = true
+    @State private var enlargedImage: String?
+    @State private var frozenImage: String?
+    @State private var heroVisible = true
+    @State private var hideImage = true
     
     var body: some View {
         GeometryReader { geo in
             ScrollView(.vertical) {
                 ScrollViewReader { scrollView in
                     ZStack {}
-                    .frame(height: geo.size.height - 120)
-                    .focusable(false)
-                    .id(Section.spacer)
+                        .frame(height: geo.size.height - geo.safeAreaInsets.top)
+                        .focusable(false)
+                        .id(Section.spacer)
                     
-                    // Hero section
-                    HStack {
-                        Text("Next up")
-                            .font(.headline)
-                        Spacer()
-                    }
-                    .padding(.leading, geo.safeAreaInsets.leading)
-                    .padding(.bottom, -20)
-                    
-                    ScrollView(.horizontal) {
-                        LazyHStack(spacing: 40) {
-                            ForEach((0...100), id: \.self) {
-                                Image("\($0 % 8)")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 320)
-                                    .cornerRadius(7.5)
-                                    .clipped()
-                                
-                                    .focusable()
-                                    .focused($focusedImage, equals: "hero-\($0)")
-                                    .scaleEffect(focusedImage == "hero-\($0)" ? 1.1 : 1)
-                                    .animation(.easeInOut(duration: imageTransitionDurarion), value: focusedImage == "hero-\($0)")
-                            }
+                    VStack {
+                        // Hero section
+                        HStack {
+                            Text("Next up")
+                                .font(.headline)
+                                .foregroundColor(Color.white)
+                            Spacer()
                         }
                         .padding(.leading, geo.safeAreaInsets.leading)
-                        .padding(.trailing, geo.safeAreaInsets.trailing)
+                        .padding(.bottom, -20)
+                        
+                        ContentRow(size: .five, edgeInsets: geo.safeAreaInsets, focusPrefix: "hero", focusedImage: $focusedImage)
+                        .id(Section.hero)
+                        .focused($focusedSection, equals: .hero)
+                        .focusSection()
                     }
-                    .frame(height: 200)
-                    .id(Section.hero)
-                    .focused($focusedSection, equals: .hero)
-                    .focusSection()
                     
                     // Content section
                     ForEach((0...15), id: \.self) { section in
-                        ScrollView(.horizontal) {
-                            LazyHStack(spacing: 40) {
-                                ForEach((0...100), id: \.self) {
-                                    Image("\($0 % 8)")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 320)
-                                        .cornerRadius(7.5)
-                                        .clipped()
-                                    
-                                        .focusable()
-                                        .focused($focusedImage, equals: "\(section)-\($0)")
-                                        .scaleEffect(focusedImage == "\(section)-\($0)" ? 1.1 : 1)
-                                        .animation(.easeInOut(duration: imageTransitionDurarion), value: focusedImage == "\(section)-\($0)")
-                                }
-                            }
-                            .padding(.leading, geo.safeAreaInsets.leading)
-                            .padding(.trailing, geo.safeAreaInsets.trailing)
-                        }
+                        ContentRow(size: .four, edgeInsets: geo.safeAreaInsets, focusPrefix: "\(section)", focusedImage: $focusedImage)
                         
                     }
-                    .frame(height: 200)
                     .id(Section.content)
                     .focused($focusedSection, equals: .content)
                     .focusSection()
                     
+                    /*
                     .onChange(of: focusedImage) { focused in
                         if focused?.starts(with: "hero-") ?? false {
                             if heroWasFocused {
@@ -115,67 +98,40 @@ struct Home: View {
                             heroWasFocused = section == .hero
                         }
                     }
+                     */
                 }
             }
             .background {
+                /*
                 ZStack(alignment: .bottom) {
-                    Image("\(enlargedImage)")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .clipped()
+                    if let frozenImage = frozenImage {
+                        BackgroundImage(url: frozenImage)
+                    }
+                    if let enlargedImage = enlargedImage {
+                        BackgroundImage(url: enlargedImage)
+                            .opacity(!heroVisible || hideImage ? 0 : 1)
+                            .animation(.easeInOut(duration: HomeConstants.imageTransitionDurarion), value: hideImage)
+                    }
                     
-                        .opacity(showHeroImage ? fadeOut ? 0 : 1 : 0)
-                        .animation(.easeInOut(duration: imageTransitionDurarion), value: fadeOut)
-                        .onChange(of: focusedImage) { index in
-                            guard let index = index else {
-                                return
-                            }
-                            
-                            let heroWasVisible = self.showHeroImage
-                            withAnimation(.easeInOut(duration: 0.5)) {
-                                self.showHeroImage = index.starts(with: "hero-")
-                            }
-                            
-                            if !heroWasVisible && self.showHeroImage {
-                                self.fadeOut = true
-                                self.enlargedImage = Int(index.replacingOccurrences(of: "hero-", with: "")) ?? 0
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + imageChangeDelay) {
-                                    if index == focusedImage {
-                                        self.fadeOut = false
-                                    }
-                                }
-                                
-                                return
-                            }
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + imageChangeDelay) {
-                                if index == focusedImage && showHeroImage {
-                                    self.fadeOut = true
-                                }
-                            }
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + imageChangeDelay + imageTransitionDurarion) {
-                                withAnimation {
-                                    if index == focusedImage {
-                                        guard let image = Int(index.replacingOccurrences(of: "hero-", with: "")) else {
-                                            return
-                                        }
-                                        
-                                        self.enlargedImage = image
-                                    }
-                                    self.fadeOut = false
-                                }
-                            }
-                        }
+                    LinearGradient
+                        .linearGradient(
+                            Gradient(colors: [.black.opacity(0.75), .black.opacity(0)]),
+                            startPoint: .bottom,
+                            endPoint: .center)
                 }
-                
-                LinearGradient
-                    .linearGradient(
-                        Gradient(colors: [.black.opacity(0.75), .black.opacity(0)]),
-                        startPoint: .bottom,
-                        endPoint: .center)
+                .onChange(of: $focusedImage) {
+                    guard let image = $0 else {
+                        self.heroVisible = false
+                        return
+                    }
+                    
+                    hideImage = true
+                    frozenImage = image
+                    _enlargedImage = image
+                    
+                    heroVisible = true
+                }
+                 */
             }
             .ignoresSafeArea()
         }
