@@ -8,50 +8,13 @@
 import SwiftUI
 
 public struct HomeConstants {
-    public static let imageChangeDelay = 0.2
+    public static let imageChangeDelay = 0.4
     public static let imageTransitionDurarion = 0.25
 }
 private enum Section: Hashable {
     case spacer
     case hero
     case content
-}
-
-fileprivate struct BackgroundImage: View {
-    public let url: String
-    
-    var body: some View {
-        Image(url)
-            .resizable()
-            .scaledToFit()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .clipped()
-    }
-}
-fileprivate struct SectionText: View {
-    public var title: String
-    public var subtitle: String?
-    public let leadingPadding: CGFloat
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.headline)
-                    .foregroundColor(Color.white)
-                
-                if let subtitle = subtitle {
-                    Text(subtitle)
-                        .font(.subheadline)
-                        .foregroundColor(Color(UIColor.lightGray))
-                }
-            }
-            Spacer()
-        }
-        .padding(.leading, leadingPadding)
-        .padding(.top, subtitle == nil ? 0 : 10)
-        .padding(.bottom, -30)
-    }
 }
 
 struct Home: View {
@@ -69,21 +32,22 @@ struct Home: View {
         GeometryReader { geo in
             ScrollView(.vertical) {
                 ScrollViewReader { scrollView in
-                    
                     // Hero section
-                    Spacer(minLength: geo.size.height - 130)
+                    Spacer(minLength: UIScreen.main.bounds.height - ((Column.five.rawValue / (16 / 9)) * 1.11 + 150))
                         .id(Section.spacer)
                     
-                    SectionText(title: "Next up", subtitle: nil, leadingPadding: geo.safeAreaInsets.leading)
-                    ContentRow(size: .five, edgeInsets: geo.safeAreaInsets, focusPrefix: "hero", focusedImage: $focusedImage)
-                        .id(Section.hero)
-                        .focused($focusedSection, equals: .hero)
-                        .focusSection()
+                    VStack {
+                        SectionText(title: "Next up", leadingPadding: geo.safeAreaInsets.leading, visible: !heroVisible, increaseOfset: focusedImage?.starts(with: "hero") ?? false)
+                        ContentRow(size: .five, edgeInsets: geo.safeAreaInsets, focusPrefix: "hero", focusedImage: $focusedImage)
+                    }
+                    .id(Section.hero)
+                    .focused($focusedSection, equals: .hero)
+                    .focusSection()
                     
                     // Content section
                     ForEach((0...15), id: \.self) { section in
                         if section != 0 {
-                            SectionText(title: "Section \(section)", subtitle: "This is a cool section", leadingPadding: geo.safeAreaInsets.leading)
+                            SectionText(title: "Section \(section)", subtitle: "This is a cool section", leadingPadding: geo.safeAreaInsets.leading, visible: !heroVisible, increaseOfset: focusedImage?.starts(with: "\(section)") ?? false)
                         }
                         ContentRow(size: .four, edgeInsets: geo.safeAreaInsets, focusPrefix: "\(section)", focusedImage: $focusedImage)
                     }
@@ -158,11 +122,5 @@ struct Home: View {
             }
             .ignoresSafeArea()
         }
-    }
-}
-
-struct Home_Previews: PreviewProvider {
-    static var previews: some View {
-        Home()
     }
 }

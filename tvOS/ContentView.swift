@@ -12,21 +12,25 @@ struct ContentView: View {
     @State var selection: Tab = Tab.home
     
     var body: some View {
-        NavigationView {
-            TabView(selection: $selection) {
-                Home()
-                    .tabItem {
-                        Text("Home")
-                    }
-                    .tag(Tab.home)
-                
-                
-                Text("oof")
-                    .tabItem {
-                        Text("idk")
-                    }
-                    .tag(Tab.featured)
-            }
+        TabView(selection: $selection) {
+            Home()
+                .tabItem {
+                    Text("Home")
+                }
+                .tag(Tab.home)
+            
+            
+            Text("oof")
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                }
+                .tag(Tab.featured)
+        }
+        
+        .onAppear() {
+            // This does not work - fuck UIKit / SwiftUI and what not
+            // UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+            UIScrollView.appearance().automaticallyAdjustsScrollIndicatorInsets = false
         }
     }
 }

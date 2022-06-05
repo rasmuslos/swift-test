@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A12177B284C86950068BE8B /* SectionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A12177A284C86950068BE8B /* SectionText.swift */; };
+		3A12177D284C86AC0068BE8B /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A12177C284C86AC0068BE8B /* BackgroundImage.swift */; };
 		3A71D950283EBAEE00647FC2 /* ContentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A71D94F283EBAEE00647FC2 /* ContentRow.swift */; };
 		3A826F93283C0DC500081831 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A826F92283C0DC500081831 /* Home.swift */; };
 		3A84FFB227DCAF46006DB613 /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A84FFB127DCAF46006DB613 /* tvOSApp.swift */; };
@@ -15,11 +17,12 @@
 		3A84FFD827DCAF6C006DB613 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A84FFD727DCAF6C006DB613 /* ContentView.swift */; };
 		3AA979F227DCB11500E17440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A84FFB527DCAF48006DB613 /* Assets.xcassets */; };
 		3AA979FB27DCB18800E17440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A84FFB527DCAF48006DB613 /* Assets.xcassets */; };
-		3AB9AF3B27DCB62F00E3314E /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB9AF3A27DCB62F00E3314E /* SwiftUIX */; };
 		3AB9AF4127DCB97700E3314E /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB9AF4027DCB97700E3314E /* SwiftUIX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A12177A284C86950068BE8B /* SectionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionText.swift; sourceTree = "<group>"; };
+		3A12177C284C86AC0068BE8B /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		3A71D94F283EBAEE00647FC2 /* ContentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRow.swift; sourceTree = "<group>"; };
 		3A826F92283C0DC500081831 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3A84FFAF27DCAF46006DB613 /* tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AB9AF3B27DCB62F00E3314E /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +58,8 @@
 			children = (
 				3A826F92283C0DC500081831 /* Home.swift */,
 				3A71D94F283EBAEE00647FC2 /* ContentRow.swift */,
+				3A12177A284C86950068BE8B /* SectionText.swift */,
+				3A12177C284C86AC0068BE8B /* BackgroundImage.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -131,7 +135,6 @@
 			);
 			name = tvOS;
 			packageProductDependencies = (
-				3AB9AF3A27DCB62F00E3314E /* SwiftUIX */,
 			);
 			productName = tvOS;
 			productReference = 3A84FFAF27DCAF46006DB613 /* tvOS.app */;
@@ -185,7 +188,6 @@
 			);
 			mainGroup = 3A5234D727DA686C00C8CD76;
 			packageReferences = (
-				3AB9AF3927DCB62F00E3314E /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 3A5234E127DA686C00C8CD76 /* Products */;
 			projectDirPath = "";
@@ -224,7 +226,9 @@
 				3A84FFB427DCAF46006DB613 /* ContentView.swift in Sources */,
 				3A826F93283C0DC500081831 /* Home.swift in Sources */,
 				3A71D950283EBAEE00647FC2 /* ContentRow.swift in Sources */,
+				3A12177D284C86AC0068BE8B /* BackgroundImage.swift in Sources */,
 				3A84FFB227DCAF46006DB613 /* tvOSApp.swift in Sources */,
+				3A12177B284C86950068BE8B /* SectionText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,26 +507,9 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		3AB9AF3927DCB62F00E3314E /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		3AB9AF3A27DCB62F00E3314E /* SwiftUIX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3AB9AF3927DCB62F00E3314E /* XCRemoteSwiftPackageReference "SwiftUIX" */;
-			productName = SwiftUIX;
-		};
 		3AB9AF4027DCB97700E3314E /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3AB9AF3927DCB62F00E3314E /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
