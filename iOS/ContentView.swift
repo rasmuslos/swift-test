@@ -9,8 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            if JellyfinApiClient.shared.loggedIn {
+                Text("Hello")
+            } else {
+                UnauthenticatedView()
+            }
+        }
     }
 }
 
