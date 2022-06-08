@@ -7,32 +7,80 @@
 
 import SwiftUI
 
+fileprivate enum Field: Hashable {
+    case server
+    case username
+    case password
+}
+
 struct LoginView: View {
-    @State private var server: String = ""
-    @State private var username: String = ""
-    @State private var password: String = ""
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var loginState: LoginState
+    
+    @State public var server: String = ""
+    @State public var username: String = ""
+    @State public var password: String = ""
+    @State private var showingAlert = false
+    
+    @FocusState private var focusedField: Field?
+    
+    func processCredentials() {
+        guard !server.isEmpty else {
+            focusedField = .server
+            return
+        }
+        guard !username.isEmpty else {
+            focusedField = .username
+            return
+        }
+        
+        Task {
+            let success = await loginState.login(server: server, username: username, password: password)
+            
+            if success {
+                dismiss()
+            } else {
+                showingAlert = true
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
-            VStack {
-                Form {
-                    TextField("server url", text: $server)
-                        .disableAutocorrection(false)
-                        .textInputAutocapitalization(.never)
-                    TextField("username", text: $username)
-                        .disableAutocorrection(false)
-                        .textInputAutocapitalization(.never)
-                    SecureField("password", text: $password)
-                        .disableAutocorrection(false)
-                        .textInputAutocapitalization(.never)
-                }
+            Form {
+                TextField("Instance", text: $server)
+                    .keyboardType(.URL)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
+                    .focused($focusedField, equals: .server)
                 
-                .navigationTitle("Login")
-                .toolbar {
+                TextField("Username", text: $username)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
+                    .focused($focusedField, equals: .username)
+                
+                SecureField("Password", text: $password)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
+                    .focused($focusedField, equals: .password)
+            }
+            .onSubmit {
+                processCredentials()
+            }
+            
+            .navigationTitle("Login")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if loginState.isLoading {
+                    ProgressView()
+                } else {
                     Button("Continue") {
-                        
+                        processCredentials()
                     }
                 }
+            }
+            .alert("Login failed", isPresented: $showingAlert) {
+                Button("OK", role: .cancel) { }
             }
         }
     }

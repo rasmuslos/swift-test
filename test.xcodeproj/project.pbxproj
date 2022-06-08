@@ -20,10 +20,13 @@
 		3A8C60E9284DFEF000B722A2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60E8284DFEF000B722A2 /* HomeView.swift */; };
 		3A8C60EE284E023D00B722A2 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60ED284E023D00B722A2 /* ApiClient.swift */; };
 		3A8C60EF284E023D00B722A2 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60ED284E023D00B722A2 /* ApiClient.swift */; };
-		3A8C60F1284E06A400B722A2 /* ApiResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60F0284E06A400B722A2 /* ApiResponses.swift */; };
-		3A8C60F2284E06A400B722A2 /* ApiResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60F0284E06A400B722A2 /* ApiResponses.swift */; };
+		3A8C60F1284E06A400B722A2 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60F0284E06A400B722A2 /* ApiData.swift */; };
+		3A8C60F2284E06A400B722A2 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60F0284E06A400B722A2 /* ApiData.swift */; };
 		3A8C60F5284E0A8C00B722A2 /* UnauthenticatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60F4284E0A8C00B722A2 /* UnauthenticatedView.swift */; };
 		3A8C60F6284E0A8C00B722A2 /* UnauthenticatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60F4284E0A8C00B722A2 /* UnauthenticatedView.swift */; };
+		3A91277D28509B0E0074B507 /* AvatarNavigationImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A91277C28509B0E0074B507 /* AvatarNavigationImage.swift */; };
+		3A91277E28509B1A0074B507 /* AvatarNavigationImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A91277C28509B0E0074B507 /* AvatarNavigationImage.swift */; };
+		3A91278628509E140074B507 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 3A91278528509E140074B507 /* Introspect */; };
 		3AA979F227DCB11500E17440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A84FFB527DCAF48006DB613 /* Assets.xcassets */; };
 		3AA979FB27DCB18800E17440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A84FFB527DCAF48006DB613 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -45,8 +48,9 @@
 		3A8C60E8284DFEF000B722A2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3A8C60EA284DFF7000B722A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3A8C60ED284E023D00B722A2 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
-		3A8C60F0284E06A400B722A2 /* ApiResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponses.swift; sourceTree = "<group>"; };
+		3A8C60F0284E06A400B722A2 /* ApiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiData.swift; sourceTree = "<group>"; };
 		3A8C60F4284E0A8C00B722A2 /* UnauthenticatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedView.swift; sourceTree = "<group>"; };
+		3A91277C28509B0E0074B507 /* AvatarNavigationImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarNavigationImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A91278628509E140074B507 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				3A6A508A284E12450015A16D /* LargeButtonStyle.swift */,
+				3A91277C28509B0E0074B507 /* AvatarNavigationImage.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -166,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				3A8C60ED284E023D00B722A2 /* ApiClient.swift */,
-				3A8C60F0284E06A400B722A2 /* ApiResponses.swift */,
+				3A8C60F0284E06A400B722A2 /* ApiData.swift */,
 			);
 			path = Jellyfin;
 			sourceTree = "<group>";
@@ -223,6 +229,7 @@
 			);
 			name = iOS;
 			packageProductDependencies = (
+				3A91278528509E140074B507 /* Introspect */,
 			);
 			productName = iOS;
 			productReference = 3A84FFD327DCAF6C006DB613 /* iOS.app */;
@@ -256,6 +263,8 @@
 			);
 			mainGroup = 3A5234D727DA686C00C8CD76;
 			packageReferences = (
+				3A91277F28509BE50074B507 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				3A91278228509E050074B507 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 3A5234E127DA686C00C8CD76 /* Products */;
 			projectDirPath = "";
@@ -292,11 +301,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8C60EE284E023D00B722A2 /* ApiClient.swift in Sources */,
-				3A8C60F1284E06A400B722A2 /* ApiResponses.swift in Sources */,
+				3A8C60F1284E06A400B722A2 /* ApiData.swift in Sources */,
 				3A84FFB427DCAF46006DB613 /* ContentView.swift in Sources */,
 				3A826F93283C0DC500081831 /* Home.swift in Sources */,
 				3A71D950283EBAEE00647FC2 /* ContentRow.swift in Sources */,
 				3A12177D284C86AC0068BE8B /* BackgroundImage.swift in Sources */,
+				3A91277E28509B1A0074B507 /* AvatarNavigationImage.swift in Sources */,
 				3A84FFB227DCAF46006DB613 /* tvOSApp.swift in Sources */,
 				3A8C60F5284E0A8C00B722A2 /* UnauthenticatedView.swift in Sources */,
 				3A12177B284C86950068BE8B /* SectionText.swift in Sources */,
@@ -311,7 +321,8 @@
 				3A8C60F6284E0A8C00B722A2 /* UnauthenticatedView.swift in Sources */,
 				3A6A508C284E12690015A16D /* LargeButtonStyle.swift in Sources */,
 				3A84FFD827DCAF6C006DB613 /* ContentView.swift in Sources */,
-				3A8C60F2284E06A400B722A2 /* ApiResponses.swift in Sources */,
+				3A91277D28509B0E0074B507 /* AvatarNavigationImage.swift in Sources */,
+				3A8C60F2284E06A400B722A2 /* ApiData.swift in Sources */,
 				3A84FFD627DCAF6C006DB613 /* iOSApp.swift in Sources */,
 				3A6A508F284E12AE0015A16D /* LoginView.swift in Sources */,
 				3A8C60EF284E023D00B722A2 /* ApiClient.swift in Sources */,
@@ -587,6 +598,33 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3A91277F28509BE50074B507 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		3A91278228509E050074B507 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A91278528509E140074B507 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A91278228509E050074B507 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3A5234D827DA686C00C8CD76 /* Project object */;
 }

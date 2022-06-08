@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct UnauthenticatedView: View {
-    @State var presentingModal = true
+    @State var presentingModal = false
     
     var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .leading) {
             Image(systemName: "person.fill.questionmark")
-                .font(.system(size: 100))
+                .resizable()
+                .scaledToFit()
+                .frame(width: 120, height: 120)
                 .foregroundColor(Color.accentColor.opacity(0.8))
             
-            Text("You are not logged in")
+            Text("No user account configured")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
+            /*
                 .padding(.top, 20)
                 .padding(.bottom, 10)
+             */
+                .padding(.vertical)
             
             Text("To login provide your Jellyfin server url as well as a username and password")
                 .font(.title3)
