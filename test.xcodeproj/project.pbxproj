@@ -22,11 +22,11 @@
 		3A8C60EF284E023D00B722A2 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60ED284E023D00B722A2 /* ApiClient.swift */; };
 		3A8C60F1284E06A400B722A2 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60F0284E06A400B722A2 /* ApiData.swift */; };
 		3A8C60F2284E06A400B722A2 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60F0284E06A400B722A2 /* ApiData.swift */; };
-		3A8C60F5284E0A8C00B722A2 /* UnauthenticatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60F4284E0A8C00B722A2 /* UnauthenticatedView.swift */; };
 		3A8C60F6284E0A8C00B722A2 /* UnauthenticatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C60F4284E0A8C00B722A2 /* UnauthenticatedView.swift */; };
 		3A91277D28509B0E0074B507 /* AvatarNavigationImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A91277C28509B0E0074B507 /* AvatarNavigationImage.swift */; };
 		3A91277E28509B1A0074B507 /* AvatarNavigationImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A91277C28509B0E0074B507 /* AvatarNavigationImage.swift */; };
 		3A91278628509E140074B507 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 3A91278528509E140074B507 /* Introspect */; };
+		3A9127882850A15A0074B507 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 3A9127872850A15A0074B507 /* Introspect */; };
 		3AA979F227DCB11500E17440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A84FFB527DCAF48006DB613 /* Assets.xcassets */; };
 		3AA979FB27DCB18800E17440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A84FFB527DCAF48006DB613 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -58,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A9127882850A15A0074B507 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +211,7 @@
 			);
 			name = tvOS;
 			packageProductDependencies = (
+				3A9127872850A15A0074B507 /* Introspect */,
 			);
 			productName = tvOS;
 			productReference = 3A84FFAF27DCAF46006DB613 /* tvOS.app */;
@@ -308,7 +310,6 @@
 				3A12177D284C86AC0068BE8B /* BackgroundImage.swift in Sources */,
 				3A91277E28509B1A0074B507 /* AvatarNavigationImage.swift in Sources */,
 				3A84FFB227DCAF46006DB613 /* tvOSApp.swift in Sources */,
-				3A8C60F5284E0A8C00B722A2 /* UnauthenticatedView.swift in Sources */,
 				3A12177B284C86950068BE8B /* SectionText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,6 +621,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		3A91278528509E140074B507 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A91278228509E050074B507 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+		3A9127872850A15A0074B507 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3A91278228509E050074B507 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct ContentView: View {
     enum Tab { case home, featured }
@@ -18,6 +19,21 @@ struct ContentView: View {
                     Text("Home")
                 }
                 .tag(Tab.home)
+                .introspectScrollView { scrollView in
+                    scrollView.automaticallyAdjustsScrollIndicatorInsets = false
+                    scrollView.contentInsetAdjustmentBehavior = .never
+                    scrollView.bounces = false
+                    scrollView.isScrollEnabled = false
+                }
+                .introspectTabBarController { tabView in
+                    tabView.automaticallyAdjustsScrollViewInsets = false
+                    tabView.tabBarObservedScrollView?.contentInsetAdjustmentBehavior = .never
+                    tabView.tabBarObservedScrollView?.isScrollEnabled = false
+                }
+                .introspectViewController { view in
+                    view.automaticallyAdjustsScrollViewInsets = false
+                    view.tabBarObservedScrollView?.contentInsetAdjustmentBehavior = .never
+                }
             
             
             Text("oof")
@@ -26,11 +42,20 @@ struct ContentView: View {
                 }
                 .tag(Tab.featured)
         }
-        
-        .onAppear() {
-            // This does not work - fuck UIKit / SwiftUI and what not
-            // UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
-            UIScrollView.appearance().automaticallyAdjustsScrollIndicatorInsets = false
+        .introspectScrollView { scrollView in
+            scrollView.automaticallyAdjustsScrollIndicatorInsets = false
+            scrollView.contentInsetAdjustmentBehavior = .never
+            scrollView.bounces = false
+            scrollView.isScrollEnabled = false
+        }
+        .introspectTabBarController { tabView in
+            tabView.automaticallyAdjustsScrollViewInsets = false
+            tabView.tabBarObservedScrollView?.contentInsetAdjustmentBehavior = .never
+            tabView.tabBarObservedScrollView?.isScrollEnabled = false
+        }
+        .introspectViewController { view in
+            view.automaticallyAdjustsScrollViewInsets = false
+            view.tabBarObservedScrollView?.contentInsetAdjustmentBehavior = .never
         }
     }
 }
